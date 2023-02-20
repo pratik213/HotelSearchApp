@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hotel Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="app" class="container mt-5 pt-5">
+        <span v-text="message"></span>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Choose Amenity</label>
+                <select class="form-control">
+                    <option>Choose</option>
+                    {% for amenity in Hotel %}
+                        <option value="{{amenity.id}}">{{amenity.amenities}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Sort By</label>
+                <select class="form-control">
+                    <option value="asc">Ascending</option>
+                    <option value="dsc">Descending</option>
+
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="customRange3" class="form-label">Select Price</label>
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+            </div>
+        </div>
+
+
+        
+        <div class="row mt-5 pt-5">
+            <div class="col-md-4">
+                {% for hotel in Hotel %}
+                <div class="card shadow-lg" style="width: 18rem;">
+                    <img src="{{hotel.banner_image.url}}" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">{{hotel.hotel_name}}</h5>
+                      <p class="card-text">{{hotel.hotel_description | truncatechars:50 }}</p>
+                      <a href="#" class="btn btn-primary">Rs. {{ hotel.hotel_price }}</a>
+                    </div>
+                  </div>
+                  
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
